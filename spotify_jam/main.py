@@ -66,20 +66,12 @@ def endJam(authorizationToken: str, sessionId: str) -> dict:
         "request": endJamReq # the entire request if people want to look at it to debug it.
     }
 
-def getJamData(authorizationToken: str, sessionId: str):
-    # The kick returns a full state of the jam, so if I kick nobody then we just get the current state
-    return kickJamUser(authorizationToken, sessionId, "USER_ID") # A blank user id doesn't work, and no one will have this id
-
-def kickJamUser(authorizationToken: str, sessionId: str, userId: str) -> dict:
-    """Kicks the user with the specified ID from the JAM
+def getJamData(authorizationToken: str, sessionId: str) -> dict:
+    """Returns the current state of the JAM
 
     Args:
         authorizationToken (str): The Bearer token for your account used to end the JAM.
         sessionId (str): The ID of the JAM, needed to end the JAM.
-        userId (str): The ID of the person you want to kick from the JAM.
-
-    Raises:
-        Exception: When the status code of creating the session is not 200 OK
 
     Returns:
         dict:
@@ -125,6 +117,23 @@ def kickJamUser(authorizationToken: str, sessionId: str, userId: str) -> dict:
                 "is_group": bool
             }
         }
+    """
+    # The kick returns a full state of the jam, so if I kick nobody then we just get the current state
+    return kickJamUser(authorizationToken, sessionId, "USER_ID") # A blank user id doesn't work, and no one will have this id
+
+def kickJamUser(authorizationToken: str, sessionId: str, userId: str) -> dict:
+    """Kicks the user with the specified ID from the JAM
+
+    Args:
+        authorizationToken (str): The Bearer token for your account used to end the JAM.
+        sessionId (str): The ID of the JAM, needed to end the JAM.
+        userId (str): The ID of the person you want to kick from the JAM.
+
+    Raises:
+        Exception: When the status code of creating the session is not 200 OK
+
+    Returns:
+        dict: Same return structure as getJamData
     """
     # I'm assuming that "28f163ba6ed4069bd7a8bf7031f2e6f9" is a userId but i need to check
     # Session ID is from the startJam. User ID is from 
