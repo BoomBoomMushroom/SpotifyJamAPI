@@ -1,0 +1,32 @@
+# Spotify-Jam
+
+A package to manage Spotify Jams!
+
+## Installation
+
+```
+pip install spotify-jam
+```
+
+## Quick Start
+
+Make sure to get your auth token. It seems to expire every so often but i got my mine by going to the Spotify web player and opening inspect element, going to the networking, making a request like playing a song, and then grabbing the "Authorization" value from a header.  
+
+```python
+import spotify_jam
+import time
+auth = "BEARER PERSONAL_TOKEN_HERE"
+
+inviteURI, sessionId = spotify_jam.startJam(auth)
+spotify_jam.allowJamUsersControlQueue(False)
+toKickId = ""
+for member in spotify_jam.getJamData(auth, sessionId)["session_members"]:
+    toKickId = member["id"]
+spotify_jam.kickJamUser(auth, sessionId, toKickId)
+time.sleep(2)
+spotify_jam.endJam(auth, sessionId)
+```
+
+## Version
+
+-  **v.0.1.0** (August 2, 2025): Initial release
