@@ -29,4 +29,4 @@ spotify_jam.endJam(auth, sessionId)
 
 ## Version
 
--  **v.0.1.0** (August 2, 2025): Initial release
+-  **v.0.2** (August 2, 2025): Initial release

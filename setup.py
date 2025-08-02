@@ -8,7 +8,7 @@ setup(
     description='spotify-jam is a package that allows you to manage Spotify Jams',
     long_description=longDescription,
     long_description_content_type="text/markdown",
-    version='0.1.0',
+    version='0.2',
     packages=find_packages(),
     install_requirements=[
         'requests==2.32.4'
